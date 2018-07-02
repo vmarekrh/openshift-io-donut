@@ -59,6 +59,19 @@
   </div>
 </div>
 
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="World">
+        </div>
+        <button id="invoke1" type="submit" class="btn btn-success">Invoke</button>
+    </form>
+
+    <h3>Result:</h3>
+    <pre><code id="hos-result">Invoke the service to see the result.</code></pre>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -70,6 +83,17 @@
           var n = $("#name").val() || "World";
           $.getJSON("/api/greeting?name=" + n, function(res) {
               $("#greeting-result").text(JSON.stringify(res));
+          });
+          e.preventDefault();
+       });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+       $("#invoke1").click(function(e) {
+          var n = $("#name").val() || "World";
+          $.getJSON("/api/greeting?name=" + n, function(res) {
+              $("#hos-result").text(JSON.stringify(res));
           });
           e.preventDefault();
        });
